@@ -1,0 +1,200 @@
+diff -urp a/m4/ax_check_brotlilib.m4 b/m4/ax_check_brotlilib.m4
+--- a/m4/ax_check_brotlilib.m4	2026-04-24 18:45:06.729969828 +0200
++++ b/m4/ax_check_brotlilib.m4	2026-04-24 18:45:12.948284425 +0200
+@@ -102,8 +102,8 @@ then
+   BROTLI_OLD_LDFLAGS=$LDFLAGS
+   BROTLI_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${BROTLI_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${BROTLI_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${BROTLI_HOME}/include"
++    case "${BROTLI_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${BROTLI_HOME}/lib" ;; esac
++    case "${BROTLI_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${BROTLI_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([brotlidec], [BrotliDecoderCreateInstance], [brotli_cv_libbrotli=yes], [brotli_cv_libbrotli=no])
+@@ -115,8 +115,8 @@ then
+     # If both library and header were found, action-if-found
+     #
+     m4_ifblank([$1],[
+-                CPPFLAGS="$CPPFLAGS -I${BROTLI_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${BROTLI_HOME}/lib"
++                case "${BROTLI_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${BROTLI_HOME}/include" ;; esac
++                case "${BROTLI_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${BROTLI_HOME}/lib" ;; esac
+                 LIBS="-lbrotlidec -lbrotlienc $LIBS"
+                 AC_DEFINE([HAVE_LIBBROTLI], [1],
+                           [Define to 1 if you have `brotli' library (-lbrotlidec -lbrotlienc)])
+diff -urp a/m4/ax_check_bz2lib.m4 b/m4/ax_check_bz2lib.m4
+--- a/m4/ax_check_bz2lib.m4	2026-04-24 18:45:06.730003704 +0200
++++ b/m4/ax_check_bz2lib.m4	2026-04-24 18:45:12.951216155 +0200
+@@ -98,8 +98,8 @@ then
+   BZ2LIB_OLD_LDFLAGS=$LDFLAGS
+   BZ2LIB_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${BZ2LIB_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${BZ2LIB_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${BZ2LIB_HOME}/include"
++    case "${BZ2LIB_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${BZ2LIB_HOME}/lib" ;; esac
++    case "${BZ2LIB_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${BZ2LIB_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([bz2], [BZ2_bzRead], [bzlib_cv_libbz2=yes], [bzlib_cv_libbz2=no])
+@@ -111,8 +111,8 @@ then
+     # If both library and header were found, action-if-found
+     #
+     m4_ifblank([$1],[
+-                CPPFLAGS="$CPPFLAGS -I${BZ2LIB_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${BZ2LIB_HOME}/lib"
++                case "${BZ2LIB_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${BZ2LIB_HOME}/include" ;; esac
++                case "${BZ2LIB_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${BZ2LIB_HOME}/lib" ;; esac
+                 LIBS="-lbz2 $LIBS"
+                 AC_DEFINE([HAVE_LIBBZ2], [1],
+                           [Define to 1 if you have `bz2' library (-lbz2)])
+diff -urp a/m4/ax_check_bzip3lib.m4 b/m4/ax_check_bzip3lib.m4
+--- a/m4/ax_check_bzip3lib.m4	2026-04-24 18:45:06.730039382 +0200
++++ b/m4/ax_check_bzip3lib.m4	2026-04-24 18:45:12.953375318 +0200
+@@ -99,8 +99,8 @@ then
+   BZIP3_OLD_LDFLAGS=$LDFLAGS
+   BZIP3_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${BZIP3_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${BZIP3_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${BZIP3_HOME}/include"
++    case "${BZIP3_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${BZIP3_HOME}/lib" ;; esac
++    case "${BZIP3_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${BZIP3_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([bzip3], [bz3_new], [bzip3_cv_libbzip3=yes], [bzip3_cv_libbzip3=no])
+@@ -116,8 +116,8 @@ then
+     # If both library and header were found and version >= 1.5.0, action-if-found
+     #
+     m4_ifblank([$1],[
+-                CPPFLAGS="$CPPFLAGS -I${BZIP3_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${BZIP3_HOME}/lib"
++                case "${BZIP3_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${BZIP3_HOME}/include" ;; esac
++                case "${BZIP3_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${BZIP3_HOME}/lib" ;; esac
+                 LIBS="-lbzip3 $LIBS"
+                 AC_DEFINE([HAVE_LIBBZIP3], [1],
+                           [Define to 1 if you have `bzip3' library (-lbzip3)])
+diff -urp a/m4/ax_check_lz4lib.m4 b/m4/ax_check_lz4lib.m4
+--- a/m4/ax_check_lz4lib.m4	2026-04-24 18:45:06.730073592 +0200
++++ b/m4/ax_check_lz4lib.m4	2026-04-24 18:45:12.956245131 +0200
+@@ -98,8 +98,8 @@ then
+   LZ4_OLD_LDFLAGS=$LDFLAGS
+   LZ4_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${LZ4_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${LZ4_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${LZ4_HOME}/include"
++    case "${LZ4_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${LZ4_HOME}/lib" ;; esac
++    case "${LZ4_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${LZ4_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([lz4], [LZ4_createStreamDecode], [lz4_cv_liblz4=yes], [lz4_cv_liblz4=no])
+@@ -111,8 +111,8 @@ then
+     # If both library and header were found, action-if-found
+     #
+     m4_ifblank([$1],[
+-                CPPFLAGS="$CPPFLAGS -I${LZ4_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${LZ4_HOME}/lib"
++                case "${LZ4_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${LZ4_HOME}/include" ;; esac
++                case "${LZ4_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${LZ4_HOME}/lib" ;; esac
+                 LIBS="-llz4 $LIBS"
+                 AC_DEFINE([HAVE_LIBLZ4], [1],
+                           [Define to 1 if you have `lz4' library (-llz4)])
+diff -urp a/m4/ax_check_lzmalib.m4 b/m4/ax_check_lzmalib.m4
+--- a/m4/ax_check_lzmalib.m4	2026-04-24 18:45:06.730109886 +0200
++++ b/m4/ax_check_lzmalib.m4	2026-04-24 18:45:12.958666997 +0200
+@@ -98,8 +98,8 @@ then
+   LZMA_OLD_LDFLAGS=$LDFLAGS
+   LZMA_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${LZMA_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${LZMA_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${LZMA_HOME}/include"
++    case "${LZMA_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${LZMA_HOME}/lib" ;; esac
++    case "${LZMA_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${LZMA_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([lzma], [lzma_code], [lzma_cv_liblzma=yes], [lzma_cv_liblzma=no])
+@@ -111,8 +111,8 @@ then
+     # If both library and header were found, action-if-found
+     #
+     m4_ifblank([$1],[
+-                CPPFLAGS="$CPPFLAGS -I${LZMA_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${LZMA_HOME}/lib"
++                case "${LZMA_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${LZMA_HOME}/include" ;; esac
++                case "${LZMA_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${LZMA_HOME}/lib" ;; esac
+                 LIBS="-llzma $LIBS"
+                 AC_DEFINE([HAVE_LIBLZMA], [1],
+                           [Define to 1 if you have `lzma' library (-llzma)])
+diff -urp a/m4/ax_check_pcre2.m4 b/m4/ax_check_pcre2.m4
+--- a/m4/ax_check_pcre2.m4	2026-04-24 18:45:06.730143313 +0200
++++ b/m4/ax_check_pcre2.m4	2026-04-24 18:45:12.960706373 +0200
+@@ -106,8 +106,8 @@ then
+   PCRE2_OLD_LDFLAGS=$LDFLAGS
+   PCRE2_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${PCRE2_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${PCRE2_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${PCRE2_HOME}/include"
++    case "${PCRE2_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${PCRE2_HOME}/lib" ;; esac
++    case "${PCRE2_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${PCRE2_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([pcre2-8], [pcre2_compile_8], [pcre2_cv_libpcre2=yes], [pcre2_cv_libpcre2=no])
+@@ -136,8 +136,8 @@ then
+     # If both library and header were found, action-if-found
+     #
+     m4_ifblank([$2],[
+-                CPPFLAGS="$CPPFLAGS -I${PCRE2_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${PCRE2_HOME}/lib"
++                case "${PCRE2_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${PCRE2_HOME}/include" ;; esac
++                case "${PCRE2_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${PCRE2_HOME}/lib" ;; esac
+                 LIBS="-lpcre2-8 $LIBS"
+                 AC_DEFINE([HAVE_PCRE2], [1],
+                           [Define to 1 if you have `PCRE2' library (-lpcre2-$1)])
+diff -urp a/m4/ax_check_zlib.m4 b/m4/ax_check_zlib.m4
+--- a/m4/ax_check_zlib.m4	2026-04-24 18:45:06.730179162 +0200
++++ b/m4/ax_check_zlib.m4	2026-04-24 18:45:12.963323579 +0200
+@@ -104,8 +104,8 @@ then
+   ZLIB_OLD_LDFLAGS=$LDFLAGS
+   ZLIB_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${ZLIB_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${ZLIB_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${ZLIB_HOME}/include"
++    case "${ZLIB_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${ZLIB_HOME}/lib" ;; esac
++    case "${ZLIB_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${ZLIB_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([z], [inflateEnd], [zlib_cv_libz=yes], [zlib_cv_libz=no])
+@@ -117,8 +117,8 @@ then
+     # If both library and header were found, action-if-found
+     #
+     m4_ifblank([$1],[
+-                CPPFLAGS="$CPPFLAGS -I${ZLIB_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${ZLIB_HOME}/lib"
++                case "${ZLIB_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${ZLIB_HOME}/include" ;; esac
++                case "${ZLIB_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${ZLIB_HOME}/lib" ;; esac
+                 LIBS="-lz $LIBS"
+                 AC_DEFINE([HAVE_LIBZ], [1],
+                           [Define to 1 if you have `z' library (-lz)])
+diff -urp a/m4/ax_check_zstdlib.m4 b/m4/ax_check_zstdlib.m4
+--- a/m4/ax_check_zstdlib.m4	2026-04-24 18:45:06.730213489 +0200
++++ b/m4/ax_check_zstdlib.m4	2026-04-24 18:45:12.965935022 +0200
+@@ -98,8 +98,8 @@ then
+   ZSTD_OLD_LDFLAGS=$LDFLAGS
+   ZSTD_OLD_CPPFLAGS=$CPPFLAGS
+   if test -n "${ZSTD_HOME}"; then
+-    LDFLAGS="$LDFLAGS -L${ZSTD_HOME}/lib"
+-    CPPFLAGS="$CPPFLAGS -I${ZSTD_HOME}/include"
++    case "${ZSTD_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${ZSTD_HOME}/lib" ;; esac
++    case "${ZSTD_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${ZSTD_HOME}/include" ;; esac
+   fi
+   AC_LANG_PUSH([C])
+   AC_CHECK_LIB([zstd], [ZSTD_decompressStream], [zstd_cv_libzstd=yes], [zstd_cv_libzstd=no])
+@@ -111,8 +111,8 @@ then
+     # If both library and header were found, action-if-found
+     #
+     m4_ifblank([$1],[
+-                CPPFLAGS="$CPPFLAGS -I${ZSTD_HOME}/include"
+-                LDFLAGS="$LDFLAGS -L${ZSTD_HOME}/lib"
++                case "${ZSTD_HOME}" in /usr|/usr/local) ;; *) CPPFLAGS="$CPPFLAGS -I${ZSTD_HOME}/include" ;; esac
++                case "${ZSTD_HOME}" in /usr|/usr/local) ;; *) LDFLAGS="$LDFLAGS -L${ZSTD_HOME}/lib" ;; esac
+                 LIBS="-lzstd $LIBS"
+                 AC_DEFINE([HAVE_LIBZSTD], [1],
+                           [Define to 1 if you have `zstd' library (-lzstd)])
