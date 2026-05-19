@@ -12,13 +12,13 @@
 
 Summary:	Ultra fast grep with interactive TUI
 Name:		ugrep
-Version:	7.7.0
+Version:	7.8.2
 Release:	1
 License:	BSD
 Group:		Applications/Text
 #Source0Download: https://github.com/Genivia/ugrep/releases
 Source0:	https://github.com/Genivia/ugrep/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	945dd20a2aaba7f5b924b9b88f651d36
+# Source0-md5:	0bd511ebad9c4c035f909c382c925889
 Patch0:		%{name}-no-lib-reach-in.patch
 # Patch0-md5:	205c7d1c5203cb5d790cf3961cf8f50a
 URL:		https://ugrep.com/
