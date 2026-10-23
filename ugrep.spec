@@ -9,16 +9,17 @@
 %bcond_without	brotli		# brotli support
 %bcond_without	bzip3		# bzip3 support
 %bcond_without	p7zip		# 7zip support
+%bcond_without	tests		# unit tests
 
 Summary:	Ultra fast grep with interactive TUI
 Name:		ugrep
-Version:	7.8.2
+Version:	7.8.5
 Release:	1
 License:	BSD
 Group:		Applications/Text
 #Source0Download: https://github.com/Genivia/ugrep/releases
 Source0:	https://github.com/Genivia/ugrep/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	0bd511ebad9c4c035f909c382c925889
+# Source0-md5:	ad286e94c752cfe3dbbe0d7cfa9e9e1b
 Patch0:		%{name}-no-lib-reach-in.patch
 # Patch0-md5:	205c7d1c5203cb5d790cf3961cf8f50a
 URL:		https://ugrep.com/
@@ -38,7 +39,6 @@ BuildRequires:	xz
 %{?with_xz:BuildRequires:	xz-devel}
 %{?with_zlib:BuildRequires:	zlib-devel}
 %{?with_zstd:BuildRequires:	zstd-devel}
-%{?with_p7zip:Suggests:	p7zip}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -100,6 +100,10 @@ zsh-completion for ugrep.
 	--with-zsh-completion-dir=%{zsh_compdir}
 
 %{__make}
+
+%if %{with tests}
+%{__make} check
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
